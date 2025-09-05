@@ -71,13 +71,13 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL . 'Views/principal/about.php' ?>">Nosotros</a>
+                            <a class="nav-link" href="<?php echo BASE_URL . 'Views/principal/about.php'; ?>">Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL . 'Views/principal/shop.php' ?>">Tienda</a>
+                            <a class="nav-link" href="<?php echo BASE_URL . 'Views/principal/shop.php'; ?>">Tienda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL . 'Views/principal/contact.php' ?>">Contacto</a>
+                            <a class="nav-link" href="<?php echo BASE_URL . 'Views/principal/contact.php'; ?>">Contacto</a>
                         </li>
                     </ul>
                 </div>
