@@ -1,4 +1,4 @@
-<?php include_once '../../Config/Config.php';?>
+<?php include_once __DIR__ . '/../../Config/Config.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/fontawesome.min.css">
 <!--
     <!-- Slick -->
-    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/slick-theme.css">
 <!--
 TemplateMo 559 Zay Shop
 
@@ -57,7 +57,7 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="<?php echo BASE_URL;?>">
-                <img src="../assets/img/apple-icon.png" alt="logo1" width="105px">
+                <img src="<?php echo BASE_URL; ?>assets/img/apple-icon.png" alt="logo1" width="55px">
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

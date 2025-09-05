@@ -1,4 +1,4 @@
-<?php include_once '../../Config/Config.php';?>
+<?php include_once __DIR__ . '/../../Config/Config.php';?>
 <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
