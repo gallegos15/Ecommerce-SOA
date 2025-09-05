@@ -1,4 +1,4 @@
-<?php include_once '../Config/Config.php'?>
+<?php include_once '../Config/Config.php';?>
 <?php include_once 'template-principal/header.php';?>
 
 
