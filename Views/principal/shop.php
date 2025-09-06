@@ -115,14 +115,17 @@
                         <?php 
                         $anterior = $data['pagina'] - 1;
                         $siguiente = $data['pagina'] + 1;
+
                         if ($data['pagina'] > 1) {
-                            echo '<li class="page-item ">
-                                <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" >Anterior</a>
+                            echo '<li class="page-item">
+                                <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="'.$anterior.'" >
+                                Anterior</a>
                             </li>';
                         } 
                         if ($data['total'] >= $siguiente)  {
                             echo '<li class="page-item">
-                                <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-white" href="#">Siguiente</a>
+                                <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-white" 
+                                href="'.$siguiente.'">Siguiente</a>
                             </li>';
                         }      
                         ?>
