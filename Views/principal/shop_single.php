@@ -1,4 +1,4 @@
-<?php include_once 'template-principal/header.php';?>
+<?php include_once __DIR__ . '/../template-principal/header.php';?>
 
     <!-- Open Content -->
     <section class="bg-light">
@@ -664,7 +664,7 @@
     <!-- End Article -->
 
 
-    <?php include_once 'template-principal/footer.php';?>
+    <?php include_once __DIR__ . '/../template-principal/footer.php';?>
 
     <!-- Start Slider Script -->
     <script src="assets/js/slick.min.js"></script>
