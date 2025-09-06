@@ -8,6 +8,7 @@ class Views{
         }else{
             $vista = "Views/".$ruta."/".$vista.".php";
         }
+        
         require $vista;
     }
 }
