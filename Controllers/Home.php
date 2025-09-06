@@ -5,10 +5,12 @@ class Home extends Controller
         parent::__construct();
         session_start();
     }
-    public function index()
-    {
+    public function index(){
         $data['title'] = 'Pagina Principal';
         $data['categorias'] = $this->model->getCategorias();
         $this->views->getView('home', "index", $data);
     }
+    
+    
 }
+

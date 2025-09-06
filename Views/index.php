@@ -1,4 +1,3 @@
-
 <?php include_once 'template-principal/header.php';?>
 
 
@@ -93,12 +92,16 @@
             </div>
         </div>
         <div class="row">
-            <?php foreach($data['categoria']as $categoria){ ?>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="<?php echo BASE_URL; ?>assets/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3"><?php echo $categoria['categoria'];?></h5>
-            </div>
-            <?php } ?>
+        <?php if (!empty($data) && !empty($data['categorias']) && is_array($data['categorias'])): ?>
+            <?php foreach ($data['categorias'] as $categoria): ?>
+                <div class="col-12 col-md-4 p-5 mt-3">
+                    <a href="#"><img src="<?php echo BASE_URL; ?>assets/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
+                    <h5 class="text-center mt-3 mb-3"><?php echo htmlspecialchars($categoria['categoria'] ?? ''); ?></h5>
+                </div>
+        <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-center">No hay categorías para mostrar.</p>
+            <?php endif; ?>
         </div>
     </section>
     <!-- End Categories of The Month -->
