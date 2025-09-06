@@ -5,6 +5,11 @@ class HomeModel extends Query{
     {
         parent::__construct();
     }
+    public function getCategorias()
+    {
+        $sql = "SELECT * FROM categorias";
+        return $this->selectAll($sql);
+    }
 
 }
  
