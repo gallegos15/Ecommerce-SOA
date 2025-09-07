@@ -95,7 +95,7 @@
         <?php if (!empty($data) && !empty($data['categorias']) && is_array($data['categorias'])): ?>
             <?php foreach ($data['categorias'] as $categoria): ?>
                 <div class="col-12 col-md-2 p-5 mt-3">
-                    <a href="#"><img src="<?php echo $categoria['imagen']; ?>" class="rounded-circle img-fluid border"></a>
+                    <a href="<?php echo BASE_URL . 'principal/categorias/' . $categoria['id']; ?>"><img src="<?php echo $categoria['imagen']; ?>" class="rounded-circle img-fluid border"></a>
                     <h5 class="text-center mt-3 mb-3"><?php echo htmlspecialchars($categoria['categoria'] ?? ''); ?></h5>
                 </div>
         <?php endforeach; ?>
