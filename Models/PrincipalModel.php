@@ -25,7 +25,6 @@ class PrincipalModel extends Query{
     //productos relacionados con la categoria
     public function getProductosCat($id_categoria, $desde, $porPagina)
 
-    //productos relacionados con la categoria}
     {  
     $sql = "SELECT * FROM productos WHERE id_categoria = $id_categoria LIMIT $desde, $porPagina";
         return $this->selectAll($sql);
@@ -34,6 +33,21 @@ class PrincipalModel extends Query{
     public function getTotalProductosCat($id_categoria)
     {
         $sql = "SELECT COUNT(*) AS total FROM productos WHERE id_categoria = $id_categoria";
+        return $this->select($sql);
+    }
+
+    //productos relacionados aleatorios
+    public function getAleatorios($id_categoria, $id_producto)
+
+    {  
+    $sql = "SELECT * FROM productos WHERE id_categoria = $id_categoria AND id != $id_producto ORDER BY RAND() LIMIT 20";
+        return $this->selectAll($sql);
+    }
+
+    //obtener productos a partir de la lista de deseos
+    public function getListaDeseo($id_producto)
+    {
+        $sql = "SELECT * FROM productos WHERE id_categoria = $id_producto";
         return $this->select($sql);
     }
 }

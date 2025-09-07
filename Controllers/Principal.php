@@ -32,6 +32,8 @@ class Principal extends Controller
     public function shop_single($id_producto)
     {
         $data['producto'] = $this->model->getProducto($id_producto);
+        $id_categoria = $data['producto']['id_categoria'];
+        $data['relacionados'] = $this->model->getAleatorios($id_categoria, $data['producto']['id'] );
         $data['title'] = $data['producto']['nombre'];
         $this->views->getView('principal', "shop_single", $data);
     }
@@ -68,5 +70,31 @@ class Principal extends Controller
     {
         $data['title'] = 'Contacto';
         $this->views->getView('principal', "contact", $data);
+    }
+
+    //vista lista deseos
+    public function deseo()
+    {
+        $data['title'] = 'Tu lista de deseo';
+        $this->views->getView('principal', "deseo", $data);
+    }
+    //obtener productos a partir de la lista de deseos
+    public function getListaDeseo()
+    {
+        $datos = file_get_contents('php://input');
+        $json = json_decode($datos, true);
+        $array = array();
+        foreach ($json as $producto) {
+            $result = $this->model->getListaDeseo($producto['idProducto']);
+            $data ['id'] = $result['id'];
+            $data ['nombre'] = $result['nombre'];
+            $data ['descripcion'] = $result['descripcion'];
+            $data ['precio'] = $result['precio'];
+            $data ['cantidad'] = $producto['cantidad'];
+            $data ['imagen'] = $result['imagen'];
+            array_push($array, $data);
+        }
+        echo json_encode($array, JSON_UNESCAPED_UNICODE);
+    die();
     }
 }
