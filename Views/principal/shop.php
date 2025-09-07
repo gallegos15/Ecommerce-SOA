@@ -242,7 +242,7 @@
     <!--End Brands-->
 
 
-    <?php include_once _DIR_ . '/../template-principal/footer.php';?>
+    <?php include_once __DIR__ . '/../template-principal/footer.php';?>
 </body>
 
 </html>
