@@ -95,6 +95,6 @@ class Principal extends Controller
             array_push($array, $data);
         }
         echo json_encode($array, JSON_UNESCAPED_UNICODE);
-    die();
+        die();
     }
 }

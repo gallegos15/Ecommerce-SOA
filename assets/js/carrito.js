@@ -14,12 +14,13 @@ document .addEventListener("DOMContentLoaded", function() {
         }
 });
 function agregarDeseo(idProducto) {
+    let listaDeseo;
     if (localStorage.getItem("listaDeseo") == null) {
         listaDeseo = [];
     } else {
-        let listaExiste = JSON.parse(localStorage.getItem("listaDeseo"));
-        for (let i = 0; i < listaExiste.length; i++) {
-            if (listaExiste[i]['idProducto']==idProducto) {
+        listaDeseo = JSON.parse(localStorage.getItem("listaDeseo")); // <-- CORRECTO
+        for (let i = 0; i < listaDeseo.length; i++) {
+            if (listaDeseo[i]['idProducto'] == idProducto) {
                 Swal.fire({
                     title: "Aviso",
                     text: "El producto ya se encuentra en la lista de deseos",
@@ -28,7 +29,6 @@ function agregarDeseo(idProducto) {
                 return;
             }
         }
-        listaDeseo.concat(localStorage.getItem("listaDeseo"));
     }
     listaDeseo.push({
         "idProducto": idProducto,
@@ -49,6 +49,8 @@ function cantidadDeseo() {
     if (listas != null) {
         btnDeseo.textContent = listas.length;
     } else {
-        btnDeseo.textContent = 0;
+        btnDeseo.textContent =0;
     }
+
+
 }
