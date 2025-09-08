@@ -47,7 +47,7 @@ class PrincipalModel extends Query{
     //obtener productos a partir de la lista de deseos
     public function getListaDeseo($id_producto)
     {
-        $sql = "SELECT * FROM productos WHERE id_categoria = $id_producto";
+        $sql = "SELECT * FROM productos WHERE id = $id_producto";
         return $this->select($sql);
     }
 }

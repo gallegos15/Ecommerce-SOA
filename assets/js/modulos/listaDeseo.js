@@ -1,8 +1,8 @@
-const tableLista = document.querySelector("#tableListaDeseo tbody");
-document .addEventListener("DOMContentLoaded", function() {
+const tableLista = document.querySelector('#tableListaDeseo tbody');
+document .addEventListener('DOMContentLoaded', function() {
     getListaDeseo()
 });
-
+//ESTO PONE DATOS A LA TABLA
 function getListaDeseo() {
     const url = base_url + 'principal/getListaDeseo';
     const hhtp = new XMLHttpRequest();
