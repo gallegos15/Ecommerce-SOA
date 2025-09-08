@@ -16,18 +16,15 @@
                             <img class="img-fluid" src="<?php echo BASE_URL; ?>assets/img/banner_img_01.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Zay</b> eCommerce</h1>
-                                <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
-                                <p>
-                                    Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1). 
-                                    This template is 100% free provided by <a rel="sponsored" class="text-success" href="https://templatemo.com" target="_blank">TemplateMo</a> website. 
-                                    Image credits go to <a rel="sponsored" class="text-success" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
-                                    <a rel="sponsored" class="text-success" href="https://unsplash.com/" target="_blank">Unsplash</a> and
-                                    <a rel="sponsored" class="text-success" href="https://icons8.com/" target="_blank">Icons 8</a>.
-                                </p>
+                        <div class="text-center align-self-center">
+                            <div class="text-success">
+                                <h2 class="fw-semibold mb-2" style="font-size: 4rem;">HASTA</h2>
+                                <h1 class="fw-bold mb-2" style="font-size: 10rem;">60%</h1>
+                                <h2 class="fw-semibold mb-3" style="font-size: 4rem;">DE DSCTO</h2>
                             </div>
+                            <h3 class="h2 text-dark">Lleva tus pasos al siguiente nivel</h3>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -38,15 +35,19 @@
                             <img class="img-fluid" src="<?php echo BASE_URL; ?>assets/img/banner_img_02.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Proident occaecat</h1>
-                                <h3 class="h2">Aliquip ex ea commodo consequat</h3>
-                                <p>
-                                    You are permitted to use this Zay CSS template for your commercial websites. 
-                                    You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
-                                </p>
-                            </div>
+                        <div class="text-center text-success w-100">
+                            <!-- Frase principal gigante -->
+                            <h1 class="fw-bold mb-2" style="font-size: 5rem;">¡Llegaron</h1>
+                            <h1 class="fw-bold mb-2" style="font-size: 5rem;">en exclusivas!</h1>
+
+                            <!-- Nombre del modelo, mediano y negrita -->
+                            <h2 class="fw-bold mb-2" style="font-size: 3rem;">AirMax</h2>
+
+                            <!-- Subtítulo mediano, sin negrita -->
+                            <h2 class="fw-normal" style="font-size: 3rem;">Solo en</h2>
+                            <h2 class="fw-normal" style="font-size: 3rem;">Urban Cloud</h2>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -57,15 +58,18 @@
                             <img class="img-fluid" src="<?php echo BASE_URL; ?>assets/img/banner_img_03.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Repr in voluptate</h1>
-                                <h3 class="h2">Ullamco laboris nisi ut </h3>
-                                <p>
-                                    We bring you 100% free CSS templates for your websites. 
-                                    If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
-                                </p>
-                            </div>
+                        <div class="text-center w-100">
+                            <!-- Texto verde, tamaño mediano -->
+                            <h2 class="fw-bold mb-2 text-success" style="font-size: 4rem;">SOLO PARA</h2>
+
+                            <!-- Texto verde, gigante -->
+                            <h1 class="fw-bold mb-2 text-success" style="font-size: 8rem;">CRACKS</h1>
+
+                            <!-- Texto negro, tamaño mediano -->
+                            <h2 class="fw-semibold mb-2 text-dark" style="font-size: 2rem;">POR TU COMPRA LLÉVATE</h2>
+                            <h2 class="fw-semibold mb-2 text-dark" style="font-size: 2rem;">GRATIS UN PAR DE MEDIAS</h2>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -84,11 +88,7 @@
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Categories of The Month</h1>
-                <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                </p>
+                <h1 class="h1">Categorías</h1>
             </div>
         </div>
         <div class="row">
@@ -112,11 +112,7 @@
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Featured Product</h1>
-                    <p>
-                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident.
-                    </p>
+                    <h1 class="h1">Productos</h1>
                 </div>
             </div>
             <div class="row">
