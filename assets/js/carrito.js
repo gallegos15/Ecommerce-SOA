@@ -6,7 +6,7 @@ const verCarrito = document.querySelector('#verCarrito');
 const tableListaCarrito = document.querySelector('#tableListaCarrito tbody');
 
 let listaDeseo, listaCarrito;
-document.addEventListener('DOMContentLoaded', function () {
+document .addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('listaDeseo') != null) {
         listaDeseo = JSON.parse(localStorage.getItem('listaDeseo'));
     }
@@ -14,21 +14,21 @@ document.addEventListener('DOMContentLoaded', function () {
         listaCarrito = JSON.parse(localStorage.getItem("listaCarrito"));
     }
     for (let i = 0; i < btnAddDeseo.length; i++) {
-        btnAddDeseo[i].addEventListener('click', function () {
-            let idProducto = btnAddDeseo[i].getAttribute('prod');
-            agregarDeseo(idProducto);
-        });
-    }
+            btnAddDeseo[i].addEventListener('click', function(){
+                let idProducto = btnAddDeseo[i].getAttribute('prod');
+                agregarDeseo(idProducto);
+            });
+        }
     for (let i = 0; i < btnAddCarrito.length; i++) {
-        btnAddCarrito[i].addEventListener('click', function () {
-            let idProducto = btnAddCarrito[i].getAttribute('prod');
-            agregarCarrito(idProducto, 1);
-        });
-    }
+            btnAddCarrito[i].addEventListener('click', function() {
+                let idProducto = btnAddCarrito[i].getAttribute('prod');
+                agregarCarrito(idProducto, 1);
+            });
+        }
     cantidadDeseo();
     cantidadCarrito();
     var myModal = new bootstrap.Modal(document.getElementById('myModal'))
-    verCarrito.addEventListener('click', function () {
+    verCarrito.addEventListener('click', function() {
         getListaCarrito()
         myModal.show();
     })
@@ -69,7 +69,7 @@ function cantidadDeseo() {
     if (listas != null) {
         btnDeseo.textContent = listas.length;
     } else {
-        btnDeseo.textContent = 0;
+        btnDeseo.textContent =0;
     }
 
 
@@ -87,27 +87,27 @@ function agregarCarrito(idProducto, cantidad, accion = false) {
             }
             
             if (listaExiste[i]["idProducto"] == idProducto) {
-                Swal.fire(
-                    'Aviso?',
-                    'El producto ya esta agregado',
-                    'warning',
-                )
-                return;
-            }
-        }
-        listaCarrito.concat(localStorage.getItem('listaCarrito'));
+             Swal.fire(
+                 'Aviso?',
+                 'El producto ya esta agregado',
+                 'warning',
+             )
+             return;
+         }
+     }
+     listaCarrito.concat(localStorage.getItem('listaCarrito'));
     }
     listaCarrito.push({
         "idProducto": idProducto,
         "cantidad": cantidad
     });
-    localStorage.setItem("listaCarrito", JSON.stringify(listaCarrito));
+    localStorage.setItem("listaCarrito", JSON.stringify(listaCarrito)); 
     Swal.fire(
-        'Aviso?',
-        'El producto se agrego al carrito',
-        'success',
+            'Aviso?',
+            'El producto se agrego al carrito',
+            'success',
     )
-    cantidadCarrito();
+    cantidadCarrito();   
 }
 function cantidadCarrito() {
     let listas = JSON.parse(localStorage.getItem('listaCarrito'));
@@ -119,20 +119,18 @@ function cantidadCarrito() {
 }
 
 function getListaCarrito() {
-     listaCarrito = JSON.parse(localStorage.getItem('listaCarrito')) || [];
     const url = base_url + 'principal/listaCarrito';
     const hhtp = new XMLHttpRequest();
     hhtp.open('POST', url, true);
     hhtp.send(JSON.stringify(listaCarrito));
-    hhtp.onreadystatechange = function () {
+    hhtp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const res = JSON.parse(this.responseText);
             let html = '';
             res.productos.forEach(producto => {
-                const subtotal = producto.precio * producto.cantidad;
                 html += `<tr>
                             <td>
-                            <img class="img-thumbnail rounded-circle" src="${producto.imagen}" alt="" width="8760px">
+                            <img class="img-thumbnail rounded-circle" src="${producto.imagen}" alt="" width="70px">
                             </td>
                             <td>${producto.nombre}</td>
                             <td>${producto.descripcion}</td>
@@ -144,13 +142,6 @@ function getListaCarrito() {
                             </td> 
                         </tr>`;
             });
-            let total = 0;
-            res.productos.forEach(producto => {
-                total += producto.precio * producto.cantidad;
-            });
-            document.getElementById('carritoTotal').innerHTML = `
-                <h5>Total: <span class="badge bg-success">${res.moneda + ' ' + total.toFixed(2)}</span></h5>
-            `;
             tableListaCarrito.innerHTML = html;
             document.querySelector('#totalGeneral').textContent = res.total;
             btnEliminarCarrito();
