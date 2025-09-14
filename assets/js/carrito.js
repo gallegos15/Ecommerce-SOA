@@ -75,12 +75,17 @@ function cantidadDeseo() {
 
 }
 
-function agregarCarrito(idProducto, cantidad) {
+function agregarCarrito(idProducto, cantidad, accion = false) {
     if (localStorage.getItem('listaCarrito') == null) {
         listaCarrito = [];
     } else {
         listaExiste = JSON.parse(localStorage.getItem('listaCarrito'));
         for (let i = 0; i < listaExiste.length; i++) {
+            
+            if (accion) {
+                eliminarListaDeseo(idProducto);
+            }
+            
             if (listaExiste[i]["idProducto"] == idProducto) {
              Swal.fire(
                  'Aviso?',
@@ -131,14 +136,39 @@ function getListaCarrito() {
                             <td>${producto.descripcion}</td>
                             <td><span class="badge bg-warning">${res. moneda + ' ' + producto.precio}</span></td>
                             <td><span class="badge bg-primary">${producto.cantidad}</span></td>
+                            <td>${producto.subTotal}</td> 
                             <td>
-                            <button type="button" class="btn btn-danger btnEliminarDeseo" prod="${producto.id}"><i class="fas fa-trash"></i></button>
-                            <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i></button>
-                            </td>   
+                            <button class="btn btn-danger btnDeletecart" type="button" prod="${producto.id}"><i class="fas fa-times-circle"></i></button>
+                            </td> 
                         </tr>`;
             });
             tableListaCarrito.innerHTML = html;
-            //btnEliminarDeseo();
+            document.querySelector('#totalGeneral').textContent = res.total;
+            btnEliminarCarrito();
         }
     }
+}
+function btnEliminarCarrito() {
+    let listaEliminar = document.querySelectorAll('.btnDeletecart');
+    for (let i = 0; i < listaEliminar.length; i++) {
+            listaEliminar[i].addEventListener('click', function() {
+            let idProducto = listaEliminar[i].getAttribute('prod');
+            eliminarListaCarrito(idProducto);
+        });
+    }
+}
+function eliminarListaCarrito(idProducto) {
+    for (let i = 0; i < listaCarrito.length; i++) {
+        if (listaCarrito[i]['idProducto'] == idProducto) {
+            listaCarrito.splice(i, 1);
+        }
+    }
+    localStorage.setItem("listaCarrito", JSON.stringify(listaCarrito));
+    getListaCarrito();
+    cantidadCarrito();
+    Swal.fire({
+        title: "Aviso",
+        text: "Producto eliminado del carrito",
+        icon: "success",
+    });
 }   

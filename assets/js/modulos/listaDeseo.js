@@ -23,12 +23,13 @@ function getListaDeseo() {
                             <td><span class="badge bg-primary">${producto.cantidad}</span></td>
                             <td>
                             <button type="button" class="btn btn-danger btnEliminarDeseo" prod="${producto.id}"><i class="fas fa-trash"></i></button>
-                            <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i></button>
+                            <button type="button" class="btn btn-primary btnAddCart" prod="${producto.id}"><i class="fas fa-cart-plus"></i></button>
                             </td>   
                         </tr>`;
             });
             tableLista.innerHTML = html;
-            btnEliminarDeseo();
+            btnEliminarDeseo();/*Mas adelante se agrega de nuevo*/
+            btnAgregarProducto();
         }
     }
 }
@@ -55,4 +56,14 @@ function eliminarListaDeseo(idProducto) {
         text: "Producto eliminado de tu lista de deseos",
         icon: "success",
     });
+}
+//Agregar productos al carrito desde la vista de lista de deseos
+function btnAgregarProducto() {
+    let listaAgregar = document.querySelectorAll('.btnAddCart');
+    for (let i = 0; i < listaAgregar.length; i++) {
+            listaAgregar[i].addEventListener('click', function() {
+            let idProducto = listaAgregar[i].getAttribute('prod');
+            agregarCarrito(idProducto, 1, true);
+        });
+    }
 }

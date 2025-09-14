@@ -103,6 +103,7 @@ class Principal extends Controller
         $datos = file_get_contents('php://input');
         $json = json_decode($datos, true);
         $array ['productos']= array();
+        $total = 0.00;
         foreach ($json as $producto) {
             $result = $this->model->getProducto($producto['idProducto']);
             $data ['id'] = $result['id'];
@@ -111,8 +112,36 @@ class Principal extends Controller
             $data ['precio'] = $result['precio'];
             $data ['cantidad'] = $producto['cantidad'];
             $data ['imagen'] = $result['imagen'];
+            $subTotal= $result['precio'] * $producto ['cantidad'];
+            $data ['subTotal'] = number_format($subTotal,2);
             array_push($array ['productos'], $data);
+            $total += $subTotal;
         }
+        $array['total'] = number_format($total, 2);
+        $array['moneda'] = MONEDA;
+        echo json_encode($array, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+    public function listaProductos()
+    {
+        $datos = file_get_contents('php://input');
+        $json = json_decode($datos, true);
+        $array ['productos']= array();
+        $total = 0.00;
+        foreach ($json as $producto) {
+            $result = $this->model->getProducto($producto['idProducto']);
+            $data ['id'] = $result['id'];
+            $data ['nombre'] = $result['nombre'];
+            $data ['descripcion'] = $result['descripcion'];
+            $data ['precio'] = $result['precio'];
+            $data ['cantidad'] = $producto['cantidad'];
+            $data ['imagen'] = $result['imagen'];
+            $subTotal= $result['precio'] * $producto ['cantidad'];
+            $data ['subTotal'] = number_format($subTotal,2);
+            array_push($array ['productos'], $data);
+            $total += $subTotal;
+        }
+        $array['total'] = number_format($total, 2);
         $array['moneda'] = MONEDA;
         echo json_encode($array, JSON_UNESCAPED_UNICODE);
         die();
