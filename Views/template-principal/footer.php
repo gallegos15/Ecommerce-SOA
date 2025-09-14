@@ -18,6 +18,8 @@
                             <th>Precio</th>
                             <th>Cantidad</th>
                             <th>SubTotal</th>
+                            <th>#</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -31,8 +33,13 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="carritoTotal" class="d-flex justify-content-end mt-3">
+                    <!-- Aquí se mostrará el total -->
+                </div>
             </div>
         </div>
+    </div>
+</div>
         <!-- Start Footer -->
         <footer class="bg-dark" id="tempaltemo_footer">
             <div class="container">
