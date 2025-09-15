@@ -41,11 +41,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 )
                 if (res.icono == 'success') {
                     setTimeout(() => {
-                        window.location.reload();
+                        enviarCorreo(correoRegistro.value, res.token);
                     }, 2000);
                 }
             }
         }
     })
 });
+
+function enviarCorreo(correo, token){
+    let formData = new FormData();
+        formData.append('correo', correo);
+        formData.append('token', token);
+    const url = base_url + 'clientes/enviarCorreo';
+        const hhtp = new XMLHttpRequest();
+        hhtp.open('POST', url, true);
+        hhtp.send(formData);
+        hhtp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                Swal.fire(
+                    'Aviso?',
+                    res.msg,
+                    res.icono,
+                )
+                if (res.icono == 'success') {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                }
+            }
+        }
+}
 
