@@ -48,7 +48,6 @@ class Clientes extends Controller
                 }
             }
 
-
             if (empty($clave)) {
                 $mensaje = array('msg' => 'La clave no puede estar vacía', 'icono' => 'warning');
                 echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
