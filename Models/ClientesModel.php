@@ -39,5 +39,44 @@ class ClientesModel extends Query{
         $sql = "SELECT * FROM clientes WHERE correo='$correo'";
         return $this->select($sql);
     }
+    public function registrarPedido($id_transaccion, $monto, $estado, $fecha, $email, $nombre, $apellido, $direccion, $ciudad, $email_user)
+    {
+        $sql = "INSERT INTO pedidos (id_transaccion, monto, estado, fecha, email, nombre, apellido, direccion, ciudad, email_user) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        $datos = array($id_transaccion, $monto, $estado, $fecha, $email, $nombre, $apellido, $direccion, $ciudad, $email_user);
+        $data = $this->insertar($sql, $datos);
+        if ($data > 0) {
+            $res = $data;
+        } else {
+            $res = 0;
+        }
+        return $res;
+    }
+    public function getProductos($desde, $porPagina)
+    {
+        $sql = "SELECT * FROM productos LIMIT $desde, $porPagina";
+        return $this->selectAll($sql);
+    }
+    public function registrarDetalle($producto, $precio, $cantidad, $id_pedido)
+    {
+        $sql = "INSERT INTO detalle_pedidos (producto, precio, cantidad, id_pedido) VALUES (?,?,?,?)";
+        $datos = array($producto, $precio, $cantidad, $id_pedido);
+        $data = $this->insertar($sql, $datos);
+        if ($data > 0) {
+            $res = $data;
+        } else {
+            $res = 0;
+        }
+        return $res;
+    }
+    public function getPedidos($proceso)
+    {
+        $sql = "SELECT * FROM pedidos WHERE proceso = $proceso";
+        return $this->selectAll($sql);
+    }
+    public function verPedido($idPedido)
+    {
+        $sql = "SELECT d.* FROM pedidos p INNER JOIN detalle_pedidos d ON p.id = d.id_pedido WHERE p.id = $idPedido";
+        return $this->selectAll($sql);
+    }
 }
 ?>

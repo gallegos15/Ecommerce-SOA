@@ -20,12 +20,16 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/slick.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/slick-theme.css">
-<!--
-TemplateMo 559 Zay Shop
-
-https://templatemo.com/tm-559-zay-shop
-
--->
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/DataTables/datatables.min.css">
+    <!-- Initialize the JS-SDK -->
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=<?php echo CLIENT_ID; ?>&currency=<?php echo MONEDA ?>&components=buttons&enable-funding=venmo,paylater,card"
+        data-sdk-integration-source="developer-studio"
+    ></script>
+    <!--
+    TemplateMo 559 Zay Shop
+    https://templatemo.com/tm-559-zay-shop
+    -->
 </head>
 
 <body>
@@ -50,24 +54,23 @@ https://templatemo.com/tm-559-zay-shop
     </nav>
     <!-- Close Top Nav -->
 
-
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="<?php echo BASE_URL;?>">
-                <img src="<?php echo BASE_URL; ?>assets/img/apple-icon.png" alt="logo1" width="55px">
+                <img src="<?php echo BASE_URL; ?>assets/img/apple-icon.png" alt="logo1" width="55">
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+            <div class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL . '';?>">Inicio</a>
+                            <a class="nav-link" href="<?php echo BASE_URL; ?>">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo BASE_URL . 'Views/principal/about.php'; ?>">Nosotros</a>
@@ -80,6 +83,7 @@ https://templatemo.com/tm-559-zay-shop
                         </li>
                     </ul>
                 </div>
+
                 <div class="navbar align-self-center d-flex">
                     <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
                         <div class="input-group">
@@ -89,26 +93,31 @@ https://templatemo.com/tm-559-zay-shop
                             </div>
                         </div>
                     </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <i class="fas fa-fw fa-search text-dark mr-2"></i>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#" id="verCarrito">
-                        <i class="fas fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadCarrito">0</span>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'principal/deseo';?>">
-                        <i class="fa fa-fw fa-heart text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadDeseo">0</span>
-                    </a>
-                    <?php if (!empty($_SESSION['correoCliente'])){ ?>
 
-                        <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'clientes'?>">
-                        <img class="img-thumbnail" src="<?php echo BASE_URL . 'assets/img/apple-icon.png'?>" alt="-LOGO-CLIENTE" width="50">
+                    <?php
+                    // Valor por defecto para evitar "Undefined variable $data" y "Trying to access array offset on value of type null"
+                    $perfil = (isset($data) && is_array($data) && isset($data['perfil'])) ? $data['perfil'] : 'no';
+                    if ($perfil === 'no') { ?>
+                        <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                            <i class="fas fa-fw fa-search text-dark me-2"></i>
                         </a>
+                        <a class="nav-icon position-relative text-decoration-none" href="#" id="verCarrito">
+                            <i class="fas fa-fw fa-cart-arrow-down text-dark me-1"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadCarrito">0</span>
+                        </a>
+                        <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'principal/deseo';?>">
+                            <i class="fa fa-fw fa-heart text-dark me-1"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadDeseo">0</span>
+                        </a>
+                    <?php } ?>
 
-                    <?php }else{ ?>
+                    <?php if (!empty($_SESSION['correoCliente'])) { ?>
+                        <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'clientes'; ?>">
+                            <img class="img-thumbnail" src="<?php echo BASE_URL . 'assets/img/apple-icon.png'; ?>" alt="-LOGO-CLIENTE" width="50">
+                        </a>
+                    <?php } else { ?>
                         <a class="nav-icon position-relative text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                        <i class="fas fa-fw fa-user text-dark mr-3"></i>
+                            <i class="fas fa-fw fa-user text-dark me-3"></i>
                         </a>
                     <?php } ?>
                 </div>

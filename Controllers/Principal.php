@@ -5,19 +5,17 @@ class Principal extends Controller
         parent::__construct();
         session_start();
     }
-    public function index()
-    {
-        
-    }
     //vista about
     public function about()
     {
+        $data['perfil'] = 'no';
         $data['title'] = 'Nosotros';
         $this->views->getView('principal', "about", $data);
     }
     //vista shop
     public function shop($page = 1)
     {
+        $data['perfil'] = 'no';
         $pagina = (empty($page)) ? 1 : $page;
         $porPagina = 10;
         $desde = ($pagina - 1) * $porPagina;
@@ -31,6 +29,7 @@ class Principal extends Controller
     //vista detail=shop-single
     public function shop_single($id_producto)
     {
+        $data['perfil'] = 'no';
         $data['producto'] = $this->model->getProducto($id_producto);
         $id_categoria = $data['producto']['id_categoria'];
         $data['relacionados'] = $this->model->getAleatorios($id_categoria, $data['producto']['id'] );
@@ -40,6 +39,7 @@ class Principal extends Controller
     //vista categorias
     public function categorias($datos)
     {
+        $data['perfil'] = 'no';
         $id_categoria = 1;
         $page = 1;
         $array = explode(',', $datos);
@@ -68,6 +68,7 @@ class Principal extends Controller
     //vista contact
     public function contact()
     {
+        $data['perfil'] = 'no';
         $data['title'] = 'Contacto';
         $this->views->getView('principal', "contact", $data);
     }
@@ -75,6 +76,7 @@ class Principal extends Controller
     //vista lista deseos
     public function deseo()
     {
+        $data['perfil'] = 'no';
         $data['title'] = 'Tu lista de deseo';
         $this->views->getView('principal', "deseo", $data);
     }
@@ -104,7 +106,8 @@ class Principal extends Controller
         $json = json_decode($datos, true);
         $array ['productos']= array();
         $total = 0.00;
-        foreach ($json as $producto) {
+        if (!empty($json)) {
+            foreach ($json as $producto) {
             $result = $this->model->getProducto($producto['idProducto']);
             $data ['id'] = $result['id'];
             $data ['nombre'] = $result['nombre'];
@@ -116,6 +119,7 @@ class Principal extends Controller
             $data ['subTotal'] = number_format($subTotal,2);
             array_push($array ['productos'], $data);
             $total += $subTotal;
+        }
         }
         $array['total'] = number_format($total, 2);
         $array['moneda'] = MONEDA;
@@ -142,6 +146,7 @@ class Principal extends Controller
             $total += $subTotal;
         }
         $array['total'] = number_format($total, 2);
+        $array['totalPaypal'] = $total;
         $array['moneda'] = MONEDA;
         echo json_encode($array, JSON_UNESCAPED_UNICODE);
         die();
