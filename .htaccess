@@ -1,11 +1,12 @@
-RewriteEngine on
-# Excluir archivos estáticos de la redirección
-RewriteCond %{REQUEST_URI} !^/assets/
-RewriteCond %{REQUEST_URI} !^/img/
-RewriteCond %{REQUEST_URI} !^/css/
-RewriteCond %{REQUEST_URI} !^/js/
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /tienda-virtual2/Ecommerce-SOA/
 
-# Redirigir el resto de las solicitudes a index.php
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+    # Permitir archivos y dirs reales
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Reescribe y ESCAPA ($1) para query string (B)
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L,B]
+</IfModule>

@@ -50,6 +50,12 @@ class PrincipalModel extends Query{
         $sql = "SELECT * FROM productos WHERE id = $id_producto";
         return $this->select($sql);
     }
+    //busqueda de productos
+    public function getBusqueda($valor)
+    {
+        $sql = "SELECT * FROM productos WHERE nombre LIKE '%". $valor ."%' OR descripcion LIKE '%". $valor ."%' LIMIT 20";
+        return $this->selectAll($sql);
+    }
 }
 ?>
     

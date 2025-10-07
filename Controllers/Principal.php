@@ -151,4 +151,10 @@ class Principal extends Controller
         echo json_encode($array, JSON_UNESCAPED_UNICODE);
         die();
     }
+
+    public function busqueda($valor) {
+        $data = $this -> model -> getBusqueda($valor);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }
