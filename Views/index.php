@@ -1,4 +1,4 @@
-<?php include_once 'template-principal/header.php';?>
+<?php include_once 'template/header-principal.php';?>
 
 
     <!-- Start Banner Hero -->
@@ -148,7 +148,7 @@
     <!-- End Featured Product -->
 
     <!-- End Script -->
-<?php include_once 'template-principal/footer.php';?>
+<?php include_once 'template/footer-principal.php';?>
 </body>
 
 </html>
