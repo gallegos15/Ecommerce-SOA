@@ -170,7 +170,7 @@
     <!--End Brands-->
 
 
-<?php include_once '../template-principal/footer.php';?>
+<?php include_once __DIR__ . '/../template/footer-principal.php';?>
 
 </body>
 
