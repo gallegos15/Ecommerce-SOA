@@ -1,5 +1,5 @@
 <?php include_once(__DIR__ . '/../../Config/Config.php'); ?>
-<?php include_once(__DIR__ . '/../template-principal/header.php'); ?>
+<?php include_once(__DIR__ . '/../template/header-principal.php'); ?>
 
 
 
@@ -241,7 +241,7 @@
     <!--End Brands-->
 
 
-    <?php include_once __DIR__ . '/../template-principal/footer.php';?>
+    <?php include_once __DIR__ . '/../template/footer-principal.php';?>
 
 </body>
 

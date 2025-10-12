@@ -1,5 +1,5 @@
 <?php include_once '../../Config/Config.php';?>
-<?php include_once '../template-principal/header.php';?>
+<?php include_once '../template/header-principal.php';?>
 
     <section class="bg-success py-5">
         <div class="container">

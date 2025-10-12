@@ -1,5 +1,5 @@
 <?php include_once '../../Config/Config.php';?>
-<?php include_once '../template-principal/header.php';?>
+<?php include_once '../template/header-principal.php';?>
 
     <!-- Start Content Page -->
     <div class="container-fluid bg-light py-5">
@@ -41,7 +41,7 @@
     <!-- End Contact -->
 
 
-<?php include_once '../template-principal/footer.php';?>
+<?php include_once '../template/footer-principal.php';?>
 
 </body>
 

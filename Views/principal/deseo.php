@@ -1,5 +1,5 @@
 <?php include_once(__DIR__ . '/../../Config/Config.php'); ?>
-<?php include_once(__DIR__ . '/../template-principal/header.php'); ?>
+<?php include_once(__DIR__ . '/../template/header-principal.php'); ?>
 
 
 
@@ -44,7 +44,7 @@
 </div>
 <!-- End Content -->
 
-<?php include_once __DIR__ . '/../template-principal/footer.php'; ?>
+<?php include_once __DIR__ . '/../template/footer-principal.php'; ?>
 <script src="<?php echo BASE_URL . 'assets/js/modulos/listaDeseo.js'; ?>"></script>
 </body>
 

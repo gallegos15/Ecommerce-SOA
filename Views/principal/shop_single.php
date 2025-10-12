@@ -1,4 +1,4 @@
-<?php include_once __DIR__ . '/../template-principal/header.php';?>
+<?php include_once __DIR__ . '/../template/header-principal.php';?>
 
     <!-- Open Content -->
     <section class="bg-light">
@@ -249,7 +249,7 @@
     <!-- End Article -->
     
 
-    <?php include_once __DIR__ . '/../template-principal/footer.php';?>
+    <?php include_once __DIR__ . '/../template/footer-principal.php';?>
     <script src="<?php echo BASE_URL; ?>assets/js/modulos/detail.js"></script>
 
     <!-- Start Slider Script -->

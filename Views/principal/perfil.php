@@ -1,6 +1,6 @@
 <?php 
 include_once(__DIR__ . '/../../Config/Config.php'); 
-include_once(__DIR__ . '/../template-principal/header.php'); 
+include_once(__DIR__ . '/../template/header-principal.php'); 
 ?>
 
 <!-- Start Content -->
@@ -158,7 +158,7 @@ include_once(__DIR__ . '/../template-principal/header.php');
     </div>
 </div>
 
-<?php include_once __DIR__ . '/../template-principal/footer.php'; ?>
+<?php include_once __DIR__ . '/../template/footer-principal.php'; ?>
 
 <script src="<?php echo BASE_URL . 'assets/DataTables/datatables.min.js'; ?>"></script>
 <script src="<?php echo BASE_URL; ?>assets/js/es-ES.js"></script>
