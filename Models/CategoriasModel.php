@@ -23,10 +23,10 @@ class CategoriasModel extends Query{
         return $this->select($sql);
     }
 
-    public function eliminar($idUser)
+    public function eliminar($idCat)
     {
         $sql = "UPDATE categorias SET estado = ? WHERE id = ?";
-        $array = array(0, $idUser);
+        $array = array(0, $idCat);
         return $this->save($sql, $array);
     }
 

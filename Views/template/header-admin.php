@@ -67,11 +67,16 @@
                     <div class="bmenu-title"><i class="fas fa-tags"></i> Categorias</div>
                 </a>
             </li>
-
-
-
-
-
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo BASE_URL . 'productos'; ?>">
+                    <div class="bmenu-title"><i class="fas fa-list"></i> Productos</div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo BASE_URL . 'pedidos'; ?>">
+                    <div class="bmenu-title"><i class="fas fa-bell"></i> Pedidos</div>
+                </a>
+            </li>
 
 
             <!-- Divider -->

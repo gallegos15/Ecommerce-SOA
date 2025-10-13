@@ -2,7 +2,7 @@
 const BASE_URL = "http://localhost/tienda-virtual2/Ecommerce-SOA/";
 const HOST = "localhost";
 const USER = "root";
-const PASS = "";
+const PASS = "admin";
 const DB = "tienda_virtual";
 const CHARSET = "charset=utf8";
 const TITLE = "Urban Cloud";
