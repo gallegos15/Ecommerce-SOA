@@ -5,6 +5,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
+// Incluimos el helper para JWT
+require_once __DIR__ . '/../Config/Helpers.php';
 
 class Clientes extends Controller
 {
@@ -44,7 +46,10 @@ class Clientes extends Controller
                     if ($data > 0) {
                         $_SESSION['correoCliente'] = $correo;
                         $_SESSION['nombreCliente'] = $nombre;
-                        $mensaje = ['msg' => 'Registrado con éxito', 'icono' => 'success', 'token' => $token];
+                        // Generar JWT mínimo para el cliente
+                        $payload = ['sub' => $data, 'email' => $correo, 'role' => 'cliente'];
+                        $jwt = jwt_encode($payload);
+                        $mensaje = ['msg' => 'Registrado con éxito', 'icono' => 'success', 'token' => $token, 'jwt' => $jwt];
                     } else {
                         $mensaje = ['msg' => 'Error al registrarse', 'icono' => 'error'];
                     }
@@ -120,7 +125,10 @@ class Clientes extends Controller
                     if (password_verify($clave, $verificar['clave'])) {
                         $_SESSION['correoCliente'] = $verificar['correo'];
                         $_SESSION['nombreCliente'] = $verificar['nombre'];
-                        $mensaje = ['msg' => 'Ok', 'icono' => 'success'];
+                            // Generar JWT mínimo para el cliente
+                            $payload = ['sub' => $verificar['id'], 'email' => $verificar['correo'], 'role' => 'cliente'];
+                            $jwt = jwt_encode($payload);
+                            $mensaje = ['msg' => 'Ok', 'icono' => 'success', 'jwt' => $jwt];
                     } else {
                         $mensaje = ['msg' => 'Contraseña incorrecta', 'icono' => 'error'];
                     }

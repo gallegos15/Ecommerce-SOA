@@ -50,6 +50,12 @@ else {
                 if (xhr.readyState==4 && xhr.status==200) {
                     const res = JSON.parse(xhr.responseText);
                     Swal.fire('Aviso?', res.msg, res.icono);
+                    // Si el backend devolvió un JWT lo guardamos en localStorage para inspección y uso
+                    if (res.jwt) {
+                        try { localStorage.setItem('jwt', res.jwt); console.info('JWT guardado en localStorage'); } catch(e){ console.warn('No se pudo guardar jwt en localStorage', e); }
+                        // opcional: también establecer cookie de sesión (si se desea)
+                        try { document.cookie = 'jwt=' + res.jwt + '; path=/'; } catch(e){}
+                    }
                     if(res.icono==='success') setTimeout(()=>window.location.reload(), 2000);
                 }
             };
@@ -69,6 +75,11 @@ else {
                 if (xhr.readyState==4 && xhr.status==200) {
                     const res = JSON.parse(xhr.responseText);
                     Swal.fire('Aviso?', res.msg, res.icono);
+                    // Guardar jwt si viene en la respuesta
+                    if (res.jwt) {
+                        try { localStorage.setItem('jwt', res.jwt); console.info('JWT guardado en localStorage (registro)'); } catch(e){ console.warn('No se pudo guardar jwt en localStorage', e); }
+                        try { document.cookie = 'jwt=' + res.jwt + '; path=/'; } catch(e){}
+                    }
                     if(res.icono==='success') setTimeout(()=>enviarCorreo(correoRegistro.value,res.token),2000);
                 }
             };
@@ -103,7 +114,9 @@ else {
 
         function doSearch(query, container){
             if(!query){ container.innerHTML='<p class="text-muted">Escribe para buscar productos...</p>'; return; }
-            fetch(base_url+'index.php?url=principal/busqueda/'+encodeURIComponent(query))
+            // usa authFetch si hay jwt para incluir Authorization header automáticamente
+            const token = localStorage.getItem('jwt');
+            (typeof authFetch === 'function' && token ? authFetch(base_url+'index.php?url=principal/busqueda/'+encodeURIComponent(query)) : fetch(base_url+'index.php?url=principal/busqueda/'+encodeURIComponent(query)))
             .then(res=>res.json())
             .then(data=>{
                 const arr = Array.isArray(data)?data:(data.productos||[]);
@@ -144,6 +157,19 @@ else {
                 document.querySelectorAll('.btnAddDeseo').forEach(b=>b.addEventListener('click',()=>agregarDeseo(b.getAttribute('prod'))));
             }).catch(()=>container.innerHTML='<div class="text-danger">Error al buscar. Intenta de nuevo.</div>');
         }
+
+        // Helper: fetch que añade Authorization: Bearer <jwt> si existe en localStorage
+        // Uso: authFetch(url, opts)
+        window.authFetch = function(url, opts = {}){
+            const token = localStorage.getItem('jwt');
+            opts = opts || {};
+            opts.headers = opts.headers || {};
+            if (token) {
+                // Si headers fue un objeto Headers o un array, convertir no cubierto; manejamos objeto simple
+                opts.headers['Authorization'] = 'Bearer ' + token;
+            }
+            return fetch(url, opts);
+        };
 
         function agregarDeseo(id){
             if(listaDeseo.some(p=>p.idProducto==id)) return;

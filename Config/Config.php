@@ -13,4 +13,8 @@ const USER_SMTP= "urbancloud4@gmail.com";
 const PASS_SMTP= "qmudfyhkkxecpjmo";
 const PUERTO_SMTP= 465;
 const HOST_SMTP= "smtp.gmail.com";
+// JWT minimal configuration (for demo / simple implementation)
+// NOTE: In production use a strong, environment-stored secret and HTTPS
+const JWT_SECRET = 'cambiar_esto_por_una_clave_muy_segura';
+const JWT_EXPIRY_SECONDS = 3600; // 1 hour
 ?>
