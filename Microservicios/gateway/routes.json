@@ -1,0 +1,4 @@
+{
+  "usuarios": "http://localhost:8001",
+  "productos": "http://localhost:8002"
+}
