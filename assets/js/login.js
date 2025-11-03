@@ -52,7 +52,7 @@ else {
                     Swal.fire('Aviso?', res.msg, res.icono);
                     // Si el backend devolvió un JWT lo guardamos en localStorage para inspección y uso
                     if (res.jwt) {
-                        try { localStorage.setItem('jwt', res.jwt); console.info('JWT guardado en localStorage'); } catch(e){ console.warn('No se pudo guardar jwt en localStorage', e); }
+                        try { localStorage.setItem('jwt', res.jwt); console.info('JWT guardado en localStorage:', res.jwt); } catch(e){ console.warn('No se pudo guardar jwt en localStorage', e); }
                         // opcional: también establecer cookie de sesión (si se desea)
                         try { document.cookie = 'jwt=' + res.jwt + '; path=/'; } catch(e){}
                     }
@@ -77,8 +77,10 @@ else {
                     Swal.fire('Aviso?', res.msg, res.icono);
                     // Guardar jwt si viene en la respuesta
                     if (res.jwt) {
-                        try { localStorage.setItem('jwt', res.jwt); console.info('JWT guardado en localStorage (registro)'); } catch(e){ console.warn('No se pudo guardar jwt en localStorage', e); }
+                        try { localStorage.setItem('jwt', res.jwt); console.info('JWT guardado en localStorage (registro):', res.jwt); } catch(e){ console.warn('No se pudo guardar jwt en localStorage', e); }
                         try { document.cookie = 'jwt=' + res.jwt + '; path=/'; } catch(e){}
+                        // Additionally log a short instruction for quick inspection
+                        console.info('Verifica Application -> Local Storage -> jwt o pestaña Network para ver Authorization header en peticiones posteriores.');
                     }
                     if(res.icono==='success') setTimeout(()=>enviarCorreo(correoRegistro.value,res.token),2000);
                 }
