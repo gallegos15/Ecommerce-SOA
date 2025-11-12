@@ -83,6 +83,14 @@ function jwt_decode($token, $secret = JWT_SECRET)
  */
 function jwt_validate_request()
 {
+	// 1) Verificar cookie (fallback preferido para experiencia en navegador)
+	if (!empty($_COOKIE['admin_jwt'])) {
+		$token = $_COOKIE['admin_jwt'];
+		$decoded = jwt_decode($token);
+		if ($decoded !== false) return $decoded;
+	}
+
+	// 2) Intentar extraer Authorization header
 	$headers = null;
 	if (function_exists('getallheaders')) {
 		$headers = getallheaders();

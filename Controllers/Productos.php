@@ -1,10 +1,37 @@
 <?php
+// Helpers JWT
+require_once __DIR__ . '/../Config/Helpers.php';
+
 class Productos extends Controller
 {
     public function __construct()
     {
         parent::__construct();
         session_start();
+
+        // Permitir acceso si hay sesión de admin
+        if (!empty($_SESSION['email'])) {
+            return;
+        }
+
+        // Intentar validar JWT en header Authorization: Bearer <token>
+        $payload = jwt_validate_request();
+        if ($payload && isset($payload['role']) && $payload['role'] === 'admin') {
+            return; // autorizado
+        }
+
+        // No autorizado: devolver JSON con instrucción (útil para AJAX)
+        header('Content-Type: application/json; charset=utf-8');
+        http_response_code(401);
+        $headers = null;
+        if (function_exists('getallheaders')) $headers = getallheaders();
+        $authHeader = $headers['Authorization'] ?? $headers['authorization'] ?? null;
+        echo json_encode([
+            'ok' => false,
+            'msg' => 'No autorizado. Incluye header Authorization: Bearer <token>',
+            'received_authorization' => $authHeader
+        ], JSON_UNESCAPED_UNICODE);
+        exit;
     }
     public function index()
     {

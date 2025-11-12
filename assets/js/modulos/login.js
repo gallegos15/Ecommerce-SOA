@@ -14,12 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
             http.send(data);
             http.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
-                    console.log(this.resnposeText);
+                    // Parse response
                     const res = JSON.parse(this.responseText);
-                    if(res.icono == 'success'){
-                        setTimeout(()=>{
+                    // El servidor ahora establece cookie HttpOnly 'admin_jwt'.
+                    // No guardamos el JWT en localStorage por seguridad.
+                    if (res.icono == 'success') {
+                        setTimeout(() => {
                             window.location = base_url + 'admin/home';
-                        },2000);
+                        }, 2000);
                     }
                     alertas(res.msg, res.icono);
                 }
